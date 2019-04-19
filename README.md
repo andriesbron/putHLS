@@ -7,7 +7,7 @@ Add this into apache httpd.conf:
 
 ```
 <Directory />
-Script PUT /put/put.php
+Script PUT /put/puthls.php
 </Directory>
 ```
 
