@@ -26,4 +26,4 @@ Create a webpage containing:
     <source src="http://localhost:8888/put/video_put_hls/playlist.m3u8" type="video/mp4">
 </video>
 ```
-You should now be viewing your livestream.
+You should now be viewing your livestream. If not, submit an issue for me to help you.
