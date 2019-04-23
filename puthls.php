@@ -50,6 +50,9 @@ class putHLS
             $this->args [$expl[0]] = $expl[1];
         }
         
+	/**
+	 * @desc Next is to find out if the script is launched for a .ts file upload or a .m3u8 file upload.
+	 */
         if (array_key_exists ("v", $this->args)) {
         	// A video file was given.
         	$this->video_name = $this->args["v"];
@@ -85,6 +88,10 @@ class putHLS
     	return $this->args;
     }
     
+    /**
+    * @todo Cleanup files from previous upload, tricky thing is how to detect it was a previous session.
+    * @todo Or, just have the last 10 files stored is also an option.
+    */
     public function cleanupPlaylistDirectory()
     {
     	//array_map('unlink', array_filter((array) glob($this->playlist_dir."*")));
@@ -100,7 +107,7 @@ class putHLS
     	while ($data = fread ($this->putdata, 2048)) {
     		$m3u8 .= $data;
     	}
-    	// FFMPEG writes the filename literally, unfortunately, remove the request string.
+    	// FFMPEG writes the filename literally unfortunately. So, remove the request string.
     	// @todo Make this generic, now this requires a formated ffmpeg call, namely that request uri is exactly followed by ?v=
     	$m3u8 = str_replace ("put.php?v=", "", $m3u8);
     	$this->log("Request uri ".$this->request_uri);
