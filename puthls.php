@@ -45,6 +45,8 @@ class putHLS
     	}
       
     	$this->request_uri = $_SERVER['REQUEST_URI'];
+	
+	// @bug See issue submitted, should parse query parameters.
     	foreach ($_SERVER['argv'] as $a) {
             $expl = explode ("=",$a);
             $this->args [$expl[0]] = $expl[1];
