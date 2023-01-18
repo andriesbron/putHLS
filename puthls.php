@@ -45,13 +45,13 @@ class putHLS
     	}
       
     	$this->request_uri = $_SERVER['REQUEST_URI'];
-	
-	// @bug See issue submitted, should parse query parameters.
-    	foreach ($_SERVER['argv'] as $a) {
+	$parsed_url=parse_url($this->request_uri);
+	foreach (explode('&',$parsed_url['query']) as $a) {
             $expl = explode ("=",$a);
             $this->args [$expl[0]] = $expl[1];
         }
         
+
 	/**
 	 * @desc Next is to find out if the script is launched for a .ts file upload or a .m3u8 file upload.
 	 */
